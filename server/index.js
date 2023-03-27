@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const express = require('express')
 const app = express()
 const userRoutes = require('./routes/User_r')
+const loginRoutes = require('./routes/Login.r')
 
 //Congif JSON response
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 //Rota usuários
 app.use(userRoutes)
+app.use(loginRoutes)
 
 
 mongoose
