@@ -1,11 +1,12 @@
 <template>
-    <label :for="tlabel"> {{ tlabel }}</label>
+    <label :for='forl'> {{ label }}</label>
 </template>
 
 <script>
     export default {
         props: {
-            tlabel: String
+            label: String,
+            forl:String
         }
     }
 </script>

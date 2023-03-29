@@ -1,7 +1,7 @@
 <template>
     <div class="input-group">
-        <LabelForm :tlabel="tlabel" class="tlabel"></LabelForm>
-        <InputForm v-model="text" :type="type" required />
+        <LabelForm :label="label" :forl="forl" ></LabelForm>
+        <InputForm :name="name" @inputz="update" :type="type"/>
     </div>
 </template>
 
@@ -14,10 +14,26 @@
             LabelForm
         },
         props: {
-            tlabel:String,
-            type: String
+            label:String,
+            forl:String,
+            name:String,
+            type:String
+        },
+        data() {
+            return {
+                localValue: this.value,
+                inputValue: ""
+            }
+        },
+        methods: {
+            update(value) {
+                
+                this.inputValue = value
+                this.$emit ('inputz', this.inputValue)
+            },
         }
     }
+    
 </script>
 
 

@@ -1,33 +1,20 @@
 <template>
-  <input :id="id" :name="name" :type="type" :placeholder="placeholder" :required="required" class="input-form">
+  <input :name="name"  @keyup="updateInput($event)" :type="type" class="input-form">
 </template>
   
 <script>
   export default {
     props: {
-      id: {
-        type: String,
-        required: true
+      name:String,
+      type:String
+    
+    },
+    methods: {
+      updateInput(e) {
+        this.$emit('inputz', e.target.value)
       },
-      name: {
-        type: String,
-        required: true
-      },
-      type: {
-        type: String,
-        required: true
-      },
-      placeholder: {
-        type: String,
-        required: false,
-        default: ''
-      },
-      required: {
-        type: Boolean,
-        required: false,
-        default: false
-      }
     }
+      
   }
   </script>
   
