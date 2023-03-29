@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors');
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASS;
@@ -10,6 +11,12 @@ const express = require('express')
 const app = express()
 const userRoutes = require('./routes/User_r')
 const loginRoutes = require('./routes/Login.r')
+
+
+
+
+// Habilitar o CORS
+app.use(cors());
 
 //Congif JSON response
 app.use(bodyParser.urlencoded({ extended: true }));

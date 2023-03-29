@@ -4,24 +4,18 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
 async function loginUser (req, res) {
-    const status = {
-        code : 200,
-        msg : "OK",
-        dados: []
-    }
 
     try {
+        console.log(req.body)
         const { email, password} = req.body
         if (!(!email || !password)) {
             const findUser = await User.findOne({email:email})
             if (findUser===null) {
-                status.msg = "Usuário não encontrado!"
-                status.code = 400
+                return res.status(404).json({ message: "Usuário não encontrado!"})       
             } else {
                 const checkPassword = await bcrypt.compare(password, findUser.password)
                 if (!checkPassword) {
-                    status.msg = "Senha inválida"
-                    status.code = 422
+                    return res.status(401).json({ message: 'Credenciais inválidas.' })
                 } else {
                     const secret = process.env.SECRET
                     const token = jwt.sign(
@@ -30,22 +24,18 @@ async function loginUser (req, res) {
                         },
                         secret,
                         )
-                    status.msg = "Autenticação realizada com sucesso!"
-                    status.code = 200
-                    status.dados.push(token)
+                    return res.status(200).json({ token, message: 'Usuário Autorizado' })
+                    
                     
                 }
             }
         } else {
-            status.msg = "Faltando parâmetros obrigatórios!"
-            status.code = 422
+            return res.status(400).json({ message: 'Faltando parâmetros obrigatórios' })
         }
     }
     catch (err) {
-        status.msg = "Ocorreu algum erro!"
-        status.code = 400
+        throw err
     }
-    res.send(status)
 }
 
 module.exports = { loginUser }
