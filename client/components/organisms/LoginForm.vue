@@ -1,4 +1,5 @@
 <template>
+    <LoginMsg :msg="msg" :colorMsg="colorMsg"></LoginMsg>
     <form>
         <InputLabelForm  name="email" label="E-mail" forl="email" type="text" @inputz="updateLogin"/>
         <InputLabelForm name="password" label="Password" forl="password" type="password" @inputz="updatePassword"/>
@@ -12,18 +13,21 @@
     import InputLabelForm from '../molecules/InputLabelForm.vue'
     import SubmitForm from '../atoms/SubmitForm.vue';
     import ForgetPassword from '../atoms/ForgetPassword.vue';
-    import axios from 'axios'
+    import LoginMsg from '../atoms/LoginMsg.vue';
 
     export default {
         components: {
             InputLabelForm,
             SubmitForm,
-            ForgetPassword
+            ForgetPassword,
+            LoginMsg
         },
         data() {
             return {
                 email: '',
-                password: ''
+                password: '',
+                msg:'',
+                colorMsg: 'red'
             }
         },
         methods: {
@@ -51,28 +55,18 @@
 
                 const res = await req.json()
                 if (res.token==undefined) {
-                    console.log(res)
+                    this.msg = res.message
+                    this.colorMsg = "red"
+                    setTimeout(()=> {
+                        this.msg = ""
+                        this.colorMsg = ""
+                    }, 4000)
                 } else {
                     console.log(res.message)
                     const token = res.token
                     localStorage.setItem('token', token)
                     this.$router.push('/profile')
                 }
-                
-                
-
-                
-               /* console.log(this.email)
-                console.log(this.password)
-                const res = await axios.post('http://localhost:3050/auth/login', {
-                    email: this.email,
-                    password: this.password 
-                })
-                const token = response.data.token
-                localStorage.setItem('token', token)
-                this.$router.push('/profile')*/
-                
-
             }
         }
     }

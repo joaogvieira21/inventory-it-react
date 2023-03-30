@@ -11,11 +11,11 @@ async function loginUser (req, res) {
         if (!(!email || !password)) {
             const findUser = await User.findOne({email:email})
             if (findUser===null) {
-                return res.status(404).json({ message: "Usuário não encontrado!"})       
+                return res.status(404).json({ message: "Usuário não encontrado."})       
             } else {
                 const checkPassword = await bcrypt.compare(password, findUser.password)
                 if (!checkPassword) {
-                    return res.status(401).json({ message: 'Credenciais inválidas.' })
+                    return res.status(401).json({ message: 'Senha inválida.' })
                 } else {
                     const secret = process.env.SECRET
                     const token = jwt.sign(
@@ -30,7 +30,7 @@ async function loginUser (req, res) {
                 }
             }
         } else {
-            return res.status(400).json({ message: 'Faltando parâmetros obrigatórios' })
+            return res.status(400).json({ message: 'Preencha os campos' })
         }
     }
     catch (err) {
