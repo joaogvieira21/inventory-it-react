@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 async function loginUser (req, res) {
 
     try {
-        console.log(req.body)
         const { email, password} = req.body
         if (!(!email || !password)) {
             const findUser = await User.findOne({email:email})
@@ -24,13 +23,16 @@ async function loginUser (req, res) {
                         },
                         secret,
                         )
+                        req.session.isLoggedIn = true
+                        req.session.userData = findUser
+                        
                     return res.status(200).json({ token, message: 'Usuário Autorizado' })
                     
                     
                 }
             }
         } else {
-            return res.status(400).json({ message: 'Preencha os campos' })
+            return res.status(422).json({ message: 'Preencha os campos.' })
         }
     }
     catch (err) {

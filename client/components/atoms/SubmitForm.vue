@@ -20,6 +20,7 @@
         border: none;
         color: white;
         font-weight: bolder;
+        cursor:pointer;
     }
 
 </style>

@@ -81,6 +81,5 @@
         align-items: center;
         text-align: start;
         gap: 5px;
-
     }
 </style>

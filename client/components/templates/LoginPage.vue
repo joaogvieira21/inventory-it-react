@@ -1,6 +1,6 @@
 <template>
     <section class="page-container">
-        <div class="teste">
+        <div class="login-area">
             <Logo></Logo>
             <TitleForm title="Acesse sua conta"></TitleForm>
             <LoginForm></LoginForm>
@@ -32,7 +32,7 @@
         display: flex;
     }
 
-    .teste {
+    .login-area {
         height: 100vh;
         width: 50%;
         display: flex;

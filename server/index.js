@@ -11,12 +11,20 @@ const express = require('express')
 const app = express()
 const userRoutes = require('./routes/User_r')
 const loginRoutes = require('./routes/Login.r')
+const sessionRoutes = require('./routes/Session_r')
 
 
+const sessionMiddleware = require('./middlewares/session');
 
+
+//session
+app.use(sessionMiddleware);
 
 // Habilitar o CORS
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // substitua com a origem do seu front-end
+    credentials: true
+}));
 
 //Congif JSON response
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +33,7 @@ app.use(bodyParser.json());
 //Rota usuários
 app.use(userRoutes)
 app.use(loginRoutes)
+app.use(sessionRoutes)
 
 
 mongoose
