@@ -22,7 +22,7 @@ app.use(sessionMiddleware);
 
 // Habilitar o CORS
 app.use(cors({
-    origin: 'http://localhost:3000', // substitua com a origem do seu front-end
+    origin: 'http://localhost:5173', // substitua com a origem do seu front-end
     credentials: true
 }));
 
@@ -45,5 +45,3 @@ mongoose
     }).catch((err) => {
         console.log(err)
     })
-
-
