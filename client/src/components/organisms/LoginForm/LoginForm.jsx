@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { InputLabelForm } from '../../molecules/InputLabelForm/InputLabelForm'
 import { SubmitForm } from '../../atoms/SubmitForm/SubmitForm'
 import { ForgetPassword } from '../../atoms/ForgetPassword/ForgetPassword'
@@ -10,6 +11,7 @@ import './LoginForm.css'
 export const LoginForm = () => {
   const [msg, setMsg] = useState("")
   const [msgColor, setMsgColor] = useState("")
+  const navigate = useNavigate();
   
 
   const handleSubmit = async (e) => {
@@ -24,6 +26,7 @@ export const LoginForm = () => {
       const res = await login(userLogin)
       setMsgColor('green')
       setMsg('Usuário Autorizado.')
+      navigate('/main')
     } catch (err) {
       console.log(err.response.data.message)
       setMsgColor('red')

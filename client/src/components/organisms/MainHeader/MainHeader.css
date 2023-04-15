@@ -1,0 +1,18 @@
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+    position: fixed;
+    width: 100%;
+}
+
+.logo-header-container {
+        width: 15%;
+        background-color: green;
+        height: 6vh;
+}
+
+.profile-header-container {
+        background-color: rgb(62, 156, 62);
+        width: 85%;
+}

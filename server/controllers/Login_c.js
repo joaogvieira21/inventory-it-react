@@ -40,4 +40,11 @@ async function loginUser (req, res) {
     }
 }
 
-module.exports = { loginUser }
+
+const teste = (req, res) => {
+    const teste1 = "teste1"
+    console.log("teste")
+    res.send(teste1) 
+}
+
+module.exports = { loginUser, teste }
