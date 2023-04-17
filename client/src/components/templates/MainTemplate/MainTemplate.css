@@ -8,3 +8,18 @@
     margin-left: 15%;
     margin-top: 6%;
 }
+
+.sidebar {
+    height: 95vh;
+    width: 15%;
+    background-color: rgb(49, 47, 47);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    margin-top: 5.8vh;
+    
+}
+
+ul {
+    width: 100%;
+}
