@@ -1,5 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBarChart } from '@fortawesome/free-solid-svg-icons'
+
+
 
 const Li = styled.li`
   background-color: rgb(49, 47, 47);
@@ -10,7 +14,7 @@ const Li = styled.li`
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  height: 50px;
+  height: 7%;
   line-height: 50px;
 
   &:hover {
@@ -19,8 +23,13 @@ const Li = styled.li`
   }
 `;
 
-export const MenuItem = ({label}) => {
+export const MenuItem = ({label, icone}) => {
   return (
-    <Li>{label}</Li>
+    <Li>
+      <div className="icon-label">
+        {label}
+      </div>
+
+    </Li>
   )
 }

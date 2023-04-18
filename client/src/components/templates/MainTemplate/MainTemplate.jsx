@@ -7,6 +7,8 @@ import { InputSearchMenu } from '../../atoms/InputSearchMenu/InputSearchMenu'
 import { Dashboard } from '../../../../pages/Dashboard'
 import { MenuItem } from '../../atoms/MenuItem/MenuItem'
 import { MenuItemDropdown } from '../../atoms/MenuItemDropdown/MenuItemDropdown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBarChart } from '@fortawesome/free-solid-svg-icons'
 
 const SidebarContext = React.createContext();
 
@@ -14,6 +16,7 @@ const SidebarContext = React.createContext();
 
 export const MainTemplate = () => {
   const equipamentos = ['Desktop', 'Notebook', 'Impressora']
+  
 
 
   return (
@@ -22,9 +25,13 @@ export const MainTemplate = () => {
           <div className="teste">
             <div className="sidebar">
               <InputSearchMenu/>
-              <MenuItem label="Dashboard"/>
-              <MenuItemDropdown label="Equipamentos" itens={equipamentos}/>
-              <MenuItem label="Mapa"/>
+              <nav>
+                <ul>
+                  <MenuItem label="Dashboard" icone="faBarChart"/>
+                  <MenuItemDropdown label="Equipamentos" itens={equipamentos}/>
+                  <MenuItem label="Mapa"/>
+                </ul>
+              </nav>
             </div>
             <div className="texto">
               <h1>teste</h1>
